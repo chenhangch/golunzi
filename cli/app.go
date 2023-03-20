@@ -48,6 +48,11 @@ func WithDescription(desc string) Option {
 	}
 }
 
+func WithConfig(noConfig bool) Option {
+	return func(ac *AppCli) {
+		ac.noConfig = noConfig
+	}
+}
 
 
 func NewAppCli(basename, name string, opts ...Option) *AppCli {
@@ -114,12 +119,14 @@ func (ac *AppCli) buildCommand()  {
 	ac.cmd = cmd
 }
 
-// Run 开启app运行
+// Run 开启运行命令行程序
 func (ac *AppCli) Run() {
-	if err := ac.cmd.Execute();  err != nil {
+	fmt.Println(color.BlueString("app start to run"))
+	if err := ac.cmd.Execute(); err != nil {
 		fmt.Printf("%v %v\n", color.RedString("Error:"), err)
 		os.Exit(1)
 	}
+	fmt.Println(color.BlueString("app readly to run"))
 }
 
 func (ac *AppCli) runCommand(cmd *cobra.Command, args []string ) error {
@@ -137,6 +144,11 @@ func (ac *AppCli) runCommand(cmd *cobra.Command, args []string ) error {
 			return err
 		}
 	}
+	// if ac.option != nil {
+	// }
 
+	if ac.runFunc != nil {
+		return ac.runFunc(ac.basename)
+	}
 	return nil
 }
