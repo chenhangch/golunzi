@@ -35,7 +35,7 @@ func addConfigFlag(basename string, fs *pflag.FlagSet) {
 			viper.SetConfigFile(configFile)
 		} else {
 			// 当前文件的位置
-			viper.AddConfigPath(".")
+			viper.AddConfigPath("./config")
 			// TODO: 多配置文件路径选择
 
 			viper.SetConfigName(basename)
