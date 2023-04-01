@@ -41,5 +41,5 @@ func addHelpCommandFlag(usage string, fs *pflag.FlagSet)  {
 		flagHelpShorthand,
 		false,
 		fmt.Sprintf("Help for the %s command.", color.GreenString(strings.Split(usage, " ")[0])),
-)
+	)
 }
