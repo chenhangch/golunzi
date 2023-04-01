@@ -13,7 +13,7 @@ type Command struct {
 	short string
 	long  string
 
-	options CliOption
+	options CliOptions
 
 	command  []*Command
 	

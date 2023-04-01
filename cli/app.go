@@ -15,10 +15,11 @@ type AppCli struct {
 	basename string
 	name string
 	description string
-	option CliOption
+	option CliOptions
 	runFunc RunFunc
 
 	noConfig bool
+	noVersion bool
 
 	commands []*Command
 
@@ -28,7 +29,7 @@ type AppCli struct {
 
 type Option func(*AppCli) 
 
-func WithOptions(opt CliOption) Option {
+func WithOptions(opt CliOptions) Option {
 	return func(ac *AppCli) {
 		ac.option = opt
 	}
@@ -106,6 +107,9 @@ func (ac *AppCli) buildCommand()  {
 
 
 	//TODO: cmd 开启 version 版本信息
+	if !ac.noVersion {
+		
+	}
 
 	// 命令行 config 命令是否开启
 	if !ac.noConfig {

@@ -19,6 +19,8 @@ func NewApp(basename string) *cli.AppCli {
 }
 
 func run(opts *appoptions.Options) cli.RunFunc {
+	// 这里写你启动服务后将执行的代码
+	// 例如 log 的初始化，项目http的启动等等
 	return func(basename string) error {
 		// log.Init(opts.Log)
 		// defer log.Flush()
