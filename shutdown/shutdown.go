@@ -70,6 +70,7 @@ func (gs *GracefulShutdown) Start() error {
 	return nil
 }
 
+// AddShutdownManager 添加shutdown管理器（）
 func (gs *GracefulShutdown) AddShutdownManager(manager ShutdownManager) {
 	gs.managers = append(gs.managers, manager)
 }
