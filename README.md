@@ -6,3 +6,5 @@ go-轮子，避免重复构造
 `errors` 错误包 -- 在`github.com/pkg/errors`上修改
 
 `shoutdown` 实现项目的优雅关闭 -- `giuhub.com/marmotedu/iam/pkg/shutdown`
+
+`clog` 实现简单的日志包，兼容标准包
