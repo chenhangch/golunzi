@@ -34,9 +34,7 @@
 - - -
 ### 1.支持错误堆栈
 可以输出调式信息，帮助我们定位问题，表明具体哪行代码报错
-```cmd
-    ...
-```
+
 ### 2.支持不同的打印格式
 错误包支持不同的打印格式，例如%+v, %v, %s等格式，
 
@@ -61,5 +59,7 @@
 ```
 - - -
 推荐的errors包
-`github.com/pkg/errors` 
-`github.com/marmotedu/errors`
+
+1. `github.com/pkg/errors` 
+
+2. `github.com/marmotedu/errors` 在[1]上做了封装
