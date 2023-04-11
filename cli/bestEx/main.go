@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/hangcodebug/golunzi/cli"
-	"github.com/hangcodebug/golunzi/cli/bestEx/appoptions"
+	"github.com/chang144/golunzi/cli"
+	"github.com/chang144/golunzi/cli/bestEx/appoptions"
 )
 
 func NewApp(basename string) *cli.AppCli {
@@ -38,4 +38,3 @@ func run(opts *appoptions.Options) cli.RunFunc {
 func main() {
 	NewApp("test").Run()
 }
-

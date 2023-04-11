@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hangcodebug/golunzi/shutdown"
-	"github.com/hangcodebug/golunzi/shutdown/posixsignal"
+	"github.com/chang144/golunzi/shutdown"
+	"github.com/chang144/golunzi/shutdown/posixsignal"
 )
 
 func main() {

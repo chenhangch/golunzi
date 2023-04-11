@@ -1,11 +1,9 @@
 package appoptions
 
 import (
-	"github.com/hangcodebug/golunzi/cli"
-	"github.com/hangcodebug/golunzi/cli/bestEx/exoptions"
+	"github.com/chang144/golunzi/cli"
+	"github.com/chang144/golunzi/cli/bestEx/exoptions"
 )
-
-
 
 type Options struct {
 	MySQLOptions *exoptions.MySQLOptions `json:"mysql"    mapstructure:"mysql"`
@@ -24,4 +22,3 @@ func (o *Options) Flags() (fss cli.AppFlagSets) {
 
 	return fss
 }
-

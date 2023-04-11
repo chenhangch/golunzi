@@ -5,9 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hangcodebug/golunzi/shutdown"
+	"github.com/chang144/golunzi/shutdown"
 )
-
 
 type startShutdownFunc func(sm shutdown.ShutdownManager)
 
@@ -40,7 +39,7 @@ func TestStartShutdownCalledPosixsignal(t *testing.T) {
 
 	time.Sleep(time.Microsecond)
 
-	syscall.Kill(syscall.Getpid(),syscall.SIGHUP)
+	syscall.Kill(syscall.Getpid(), syscall.SIGHUP)
 
-	waitSig(t,c)
+	waitSig(t, c)
 }
