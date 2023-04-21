@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/fatih/color v1.15.0
 	github.com/gin-gonic/gin v1.9.0
+	github.com/json-iterator/go v1.1.12
 	github.com/prometheus/common v0.26.0
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
@@ -25,7 +26,6 @@ require (
 	github.com/goccy/go-json v0.10.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/konsorten/go-windows-terminal-sequences v1.0.3 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
