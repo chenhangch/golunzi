@@ -11,12 +11,17 @@ import (
 	"github.com/spf13/viper"
 )
 
-const configFlagName = "config"
+const (
+	configFlagName        = "config"
+	defaultConfigFileType = "yaml"
+)
 
 var configFile string
 
-func init()  {
-	pflag.StringVarP(&configFile,configFlagName,"c",configFile,"set you config file || file type is yaml")
+var configIn string
+
+func init() {
+	pflag.StringVarP(&configFile, configFlagName, "c", configFile, "set you config file && file type is yaml")
 }
 
 func addConfigFlag(basename string, fs *pflag.FlagSet) {
@@ -24,21 +29,25 @@ func addConfigFlag(basename string, fs *pflag.FlagSet) {
 
 	// viper 首先读取环境变量 前缀为basename改大写，且环境变量采用"_"而非"-"或者"."
 	viper.AutomaticEnv()
-	viper.SetEnvPrefix(strings.Replace(strings.ToUpper(basename),"-","_",-1))
-	viper.SetEnvKeyReplacer(strings.NewReplacer(",","_","-","_"))
+	viper.SetEnvPrefix(strings.Replace(strings.ToUpper(basename), "-", "_", -1))
+	viper.SetEnvKeyReplacer(strings.NewReplacer(",", "_", "-", "_"))
 
 	// 设置在调用每个命令的 Execute 方法时要运行的传递函数
 	cobra.OnInitialize(func() {
-		fmt.Println(color.GreenString("viper read config"))
-		if configFile != ""{
+		fmt.Println(color.GreenString("===========> viper read config"))
+		if configFile != "" {
 			// 需要显示输入配置文件的路径、文件名称以及扩展名、
 			viper.SetConfigFile(configFile)
 		} else {
-			// 当前文件的位置
-			viper.AddConfigPath("./config")
-			// TODO: 多配置文件路径选择
-
+			if configIn != "" {
+				//viper.SetConfigFile(configIn)
+				viper.AddConfigPath(configIn)
+			} else {
+				// 默认读取文件的位置
+				viper.AddConfigPath("./config")
+			}
 			viper.SetConfigName(basename)
+			viper.SetConfigType(defaultConfigFileType)
 		}
 
 		if err := viper.ReadInConfig(); err != nil {
@@ -48,3 +57,6 @@ func addConfigFlag(basename string, fs *pflag.FlagSet) {
 	})
 }
 
+func SetConfigIn(configFile string) {
+	configIn = configFile
+}
