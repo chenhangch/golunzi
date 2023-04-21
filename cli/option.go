@@ -1,6 +1,6 @@
 package cli
 
-// CliOption 抽象用于从命令行读取参数的配置选项。
+// CliOptions 抽象用于从命令行读取参数的配置选项。
 type CliOptions interface {
 	// Flags() add pflag
 	Flags() (fss AppFlagSets)
@@ -8,12 +8,12 @@ type CliOptions interface {
 	Validate() []error
 }
 
-// ConfigurableOption 抽象用于从配置文件读取参数的配置选项。
+// ConfigurableOptions 抽象用于从配置文件读取参数的配置选项。
 type ConfigurableOptions interface {
 	ApplyFlags() []error
 }
 
-// ComleteableOptions 抽象可以完成/编译的options
+// CompleteableOptions  抽象可以完成/编译的options
 type CompleteableOptions interface {
 	Complete() error
 }

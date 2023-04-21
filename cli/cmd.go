@@ -15,21 +15,19 @@ type Command struct {
 
 	options CliOptions
 
-	command  []*Command
-	
-	args  cobra.PositionalArgs // Args 个数设置
-	runFunc   RunCommandFunc
+	command []*Command
+
+	args    cobra.PositionalArgs // Args 个数设置
+	runFunc RunCommandFunc
 }
 
 type CommandOption func(*Command)
 
-
-
-// RunCommandFunc 相关的 action 
+// RunCommandFunc 相关的 action
 type RunCommandFunc func(args []string) error
 
 // AddCommand 添加子命令行
-func (c *Command) AddCommand(cmd *Command)  {
+func (c *Command) AddCommand(cmd *Command) {
 	c.command = append(c.command, cmd)
 }
 
@@ -40,10 +38,10 @@ func (c *Command) AddCommands(cmds ...*Command) {
 // BuildCobraCommand 构建命令行及其子命令行
 func (c *Command) BuildCobraCommand() *cobra.Command {
 	cmd := &cobra.Command{
-		Use: c.usage,
+		Use:   c.usage,
 		Short: c.short,
-		Long: c.long,
-		Args: c.args,
+		Long:  c.long,
+		Args:  c.args,
 		// Run: c.runFunc,
 	}
 
@@ -53,7 +51,7 @@ func (c *Command) BuildCobraCommand() *cobra.Command {
 		for _, command := range c.command {
 			cmd.AddCommand(command.BuildCobraCommand())
 		}
-		
+
 	}
 
 	if c.runFunc != nil {

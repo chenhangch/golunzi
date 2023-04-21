@@ -3,6 +3,7 @@ package cli
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/fatih/color"
 	"github.com/prometheus/common/log"
@@ -12,22 +13,22 @@ import (
 )
 
 type AppCli struct {
-	basename string
-	name string
+	basename    string
+	name        string
 	description string
-	option CliOptions
-	runFunc RunFunc
+	option      CliOptions
+	runFunc     RunFunc
 
-	noConfig bool
+	noConfig  bool
 	noVersion bool
 
 	commands []*Command
 
 	args cobra.PositionalArgs
-	cmd *cobra.Command
+	cmd  *cobra.Command
 }
 
-type Option func(*AppCli) 
+type Option func(*AppCli)
 
 func WithOptions(opt CliOptions) Option {
 	return func(ac *AppCli) {
@@ -55,11 +56,10 @@ func WithConfig(noConfig bool) Option {
 	}
 }
 
-
 func NewAppCli(basename, name string, opts ...Option) *AppCli {
 	a := &AppCli{
 		basename: basename,
-		name: name,
+		name:     name,
 	}
 
 	for _, o := range opts {
@@ -71,12 +71,12 @@ func NewAppCli(basename, name string, opts ...Option) *AppCli {
 	return a
 }
 
-func (ac *AppCli) buildCommand()  {
+func (ac *AppCli) buildCommand() {
 	cmd := &cobra.Command{
-		Use: ac.basename,
+		Use:   ac.basename,
 		Short: ac.name,
-		Long: ac.description,
-		Args: ac.args,
+		Long:  ac.description,
+		Args:  ac.args,
 	}
 	cmd.SetOut(os.Stdout)
 	cmd.SetErr(os.Stderr)
@@ -105,10 +105,9 @@ func (ac *AppCli) buildCommand()  {
 		}
 	}
 
-
 	//TODO: cmd 开启 version 版本信息
 	if !ac.noVersion {
-		
+
 	}
 
 	// 命令行 config 命令是否开启
@@ -117,7 +116,7 @@ func (ac *AppCli) buildCommand()  {
 	}
 
 	appFlagSets.FlagSet("global").BoolP("help", "h", false, fmt.Sprintf("help for %s", color.GreenString(ac.name)))
-	// 将全新的全局标志集添加到cmd FlagSet 
+	// 将全新的全局标志集添加到cmd FlagSet
 	cmd.Flags().AddFlagSet(appFlagSets.FlagSet("global"))
 
 	ac.cmd = cmd
@@ -125,20 +124,20 @@ func (ac *AppCli) buildCommand()  {
 
 // Run 开启运行命令行程序
 func (ac *AppCli) Run() {
-	fmt.Println(color.BlueString("app start to run"))
+	fmt.Println(color.YellowString(time.Now().String()) + color.BlueString("===========> app cli run"))
 	if err := ac.cmd.Execute(); err != nil {
 		fmt.Printf("%v %v\n", color.RedString("Error:"), err)
 		os.Exit(1)
 	}
-	fmt.Println(color.BlueString("app readly to run"))
+	fmt.Println(color.BlueString("===========> app cli cmd.Exec finish"))
 }
 
-func (ac *AppCli) runCommand(cmd *cobra.Command, args []string ) error {
+func (ac *AppCli) runCommand(cmd *cobra.Command, args []string) error {
 	// 日志记录cmd下所有flag对应的value
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
-		log.Debugf("FLAG: --%s=%q",color.BlueString(f.Name),color.GreenString(f.Value.String()))
+		log.Debugf("FLAG: --%s=%q", color.BlueString(f.Name), color.GreenString(f.Value.String()))
 	})
-	// 输出app --version 的信息
+	// TODO:输出app --version 的信息
 
 	if !ac.noConfig {
 		if err := viper.BindPFlags(cmd.Flags()); err != nil {
