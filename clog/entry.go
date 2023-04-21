@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// Entry 将日志记录到支持的输出
 type Entry struct {
 	logger *logger
 	Buffer *bytes.Buffer

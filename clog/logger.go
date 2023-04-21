@@ -2,6 +2,7 @@ package clog
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"sync"
 	"unsafe"
@@ -9,6 +10,7 @@ import (
 
 var std = New()
 
+// logger
 type logger struct {
 	opt       *options
 	mu        sync.Mutex // guards
