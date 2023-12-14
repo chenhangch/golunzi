@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/chang144/golunzi/shutdown"
+	"github.com/chenhangch/golunzi/shutdown"
 )
 
 type startShutdownFunc func(sm shutdown.ShutdownManager)

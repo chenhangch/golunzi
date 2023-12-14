@@ -1,9 +1,10 @@
 package clog
 
 import (
-	"github.com/chang144/golunzi/errors"
 	"io"
 	"os"
+
+	"github.com/chenhangch/golunzi/errors"
 )
 
 const (

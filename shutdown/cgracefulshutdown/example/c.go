@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	gracefulshutdown "github.com/chang144/golunzi/shutdown/cgracefulshutdown"
+	gracefulshutdown "github.com/chenhangch/golunzi/shutdown/cgracefulshutdown"
 )
 
 // MyService is a simple service that needs to be gracefully shutdown.

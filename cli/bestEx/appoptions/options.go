@@ -1,8 +1,8 @@
 package appoptions
 
 import (
-	"github.com/chang144/golunzi/cli"
-	"github.com/chang144/golunzi/cli/bestEx/exoptions"
+	"github.com/chenhangch/golunzi/cli"
+	"github.com/chenhangch/golunzi/cli/bestEx/exoptions"
 )
 
 type Options struct {

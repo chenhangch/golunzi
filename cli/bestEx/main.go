@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/chang144/golunzi/cli"
-	"github.com/chang144/golunzi/cli/bestEx/appoptions"
+	"github.com/chenhangch/golunzi/cli"
+	"github.com/chenhangch/golunzi/cli/bestEx/appoptions"
 )
 
 func NewApp(basename string) *cli.AppCli {

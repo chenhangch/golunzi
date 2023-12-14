@@ -5,8 +5,9 @@ import (
 	"os"
 	"time"
 
+	log "golang.org/x/exp/slog"
+
 	"github.com/fatih/color"
-	"github.com/prometheus/common/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -135,7 +136,8 @@ func (ac *AppCli) Run() {
 func (ac *AppCli) runCommand(cmd *cobra.Command, args []string) error {
 	// 日志记录cmd下所有flag对应的value
 	cmd.Flags().VisitAll(func(f *pflag.Flag) {
-		log.Debugf("FLAG: --%s=%q", color.BlueString(f.Name), color.GreenString(f.Value.String()))
+		// log.Debugf("FLAG: --%s=%q", color.BlueString(f.Name), color.GreenString(f.Value.String()))
+		log.Debug("FLAG: --%s=%q", color.BlueString(f.Name), color.GreenString(f.Value.String()))
 	})
 	// TODO:输出app --version 的信息
 

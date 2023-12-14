@@ -5,7 +5,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/chang144/golunzi/shutdown"
+	"github.com/chenhangch/golunzi/shutdown"
 )
 
 const Name = "PosixSignalManager"
